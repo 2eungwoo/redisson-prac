@@ -24,6 +24,8 @@ public class RedissonConfig {
             .setConnectionPoolSize(64)
             .setRetryAttempts(3);
 
+        config.setCodec(new org.redisson.client.codec.StringCodec());
+
         return Redisson.create(config);
     }
 }
