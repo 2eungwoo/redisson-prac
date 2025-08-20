@@ -11,7 +11,7 @@ public class KeyResolver {
     private final TicketProperty ticketProperty;
 
     public String resolve(String domain, String keyId) {
-        final String prefix = ticketProperty.getPrefix() + ":" + domain + ":%s";
+        final String prefix = ticketProperty.prefix() + ":" + domain + ":%s";
         return String.format(prefix, keyId);
     }
 }

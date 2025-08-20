@@ -19,7 +19,7 @@ public class RedissonConfig {
         Config config = new Config();
         config.useSingleServer()
             .setAddress(
-                String.format("redis://%s:%d", redisProperty.getHost(), redisProperty.getPort()))
+                String.format("redis://%s:%d", redisProperty.host(), redisProperty.port()))
             .setConnectionMinimumIdleSize(10) // 디폴트 커넥션 풀
             .setConnectionPoolSize(64)
             .setRetryAttempts(3);
