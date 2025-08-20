@@ -1,0 +1,32 @@
+package study.redissonprac.config;
+
+
+import lombok.RequiredArgsConstructor;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@RequiredArgsConstructor
+public class RedissonConfig {
+
+    private final RedisProperty redisProperty;
+
+    @Bean(destroyMethod = "shutdown") // 빈 종료 시 shutdown 호출 - redisson 문서에서 권장
+    public RedissonClient redissonClient() {
+        Config config = new Config();
+        config.useSingleServer()
+            .setAddress(
+                String.format("redis://%s:%d", redisProperty.host(), redisProperty.port()))
+            .setConnectionMinimumIdleSize(10) // 디폴트 커넥션 풀
+            .setConnectionPoolSize(64)
+            .setRetryAttempts(3);
+
+        // 직렬화된 결과 말고 문자열로 보려고 추가함
+        config.setCodec(new org.redisson.client.codec.StringCodec());
+
+        return Redisson.create(config);
+    }
+}
