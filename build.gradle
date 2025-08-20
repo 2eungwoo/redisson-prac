@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'groovy'
     id 'org.springframework.boot' version '3.5.4'
     id 'io.spring.dependency-management' version '1.1.7'
 }
@@ -28,10 +29,18 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     implementation 'org.redisson:redisson-spring-boot-starter:3.50.0'
+
+//    testImplementation 'org.spockframework:spock-core:2.3-groovy-4'
+//    testImplementation 'org.spockframework:spock-spring:2.3-groovy-4'
+//    testImplementation 'org.apache.groovy:groovy:4.0.21'
+
+    testImplementation('org.spockframework:spock-core:2.1-groovy-3.0')
+    testImplementation('org.spockframework:spock-spring:2.1-groovy-3.0')
 }
 
 tasks.named('test') {
