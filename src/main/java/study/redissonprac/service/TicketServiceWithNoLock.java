@@ -9,6 +9,7 @@ import study.redissonprac.util.TicketRepository;
 @Service
 @RequiredArgsConstructor
 public class TicketServiceWithNoLock implements TicketDecreaseUseCase{
+
     private final TicketRepository ticketRepository;
     private static final int EMPTY = 0;
 
