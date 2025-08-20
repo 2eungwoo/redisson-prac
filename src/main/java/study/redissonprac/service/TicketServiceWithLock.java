@@ -39,9 +39,8 @@ public class TicketServiceWithLock implements TicketDecreaseUseCase{
             Thread.currentThread().interrupt();
             log.error("락 획득 실패", e);
         } finally {
-            if (lock != null && lock.isLocked()) {
-                lockManager.unlock(lock);
-            }
+            lockManager.unlock(lock);
+
         }
     }
 }
