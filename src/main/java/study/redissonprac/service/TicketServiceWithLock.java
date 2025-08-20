@@ -9,7 +9,7 @@ import study.redissonprac.util.TicketLockManager;
 import study.redissonprac.util.TicketRepository;
 
 @Slf4j
-@Service
+@Service("ticketServiceWithLock")
 @RequiredArgsConstructor
 public class TicketServiceWithLock implements TicketDecreaseUseCase{
     private final TicketRepository ticketRepository;
@@ -39,7 +39,9 @@ public class TicketServiceWithLock implements TicketDecreaseUseCase{
             Thread.currentThread().interrupt();
             log.error("락 획득 실패", e);
         } finally {
-            lockManager.unlock(lock);
+            if (lock != null && lock.isLocked()) {
+                lockManager.unlock(lock);
+            }
         }
     }
 }

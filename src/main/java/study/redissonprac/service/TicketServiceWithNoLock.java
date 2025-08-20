@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import study.redissonprac.util.TicketRepository;
 
 @Slf4j
-@Service
+@Service("ticketServiceWithNoLock")
 @RequiredArgsConstructor
 public class TicketServiceWithNoLock implements TicketDecreaseUseCase{
 
