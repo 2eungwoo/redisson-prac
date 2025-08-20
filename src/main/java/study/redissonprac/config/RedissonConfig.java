@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class RedissonConfig {
 
-    private final RedisProperties redisProperty;
+    private final RedisProperty redisProperty;
 
     @Bean(destroyMethod = "shutdown") // 빈 종료 시 shutdown 호출 - redisson 문서에서 권장
     public RedissonClient redissonClient() {
