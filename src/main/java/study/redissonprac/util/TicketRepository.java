@@ -15,6 +15,14 @@ public class TicketRepository {
     }
 
     public int getTicket(String key) {
-        return redissonClient.<Integer>getBucket(key).get();
+        Object value = redissonClient.getBucket(key).get();
+        if (value instanceof Integer i) {
+            return i;
+        }
+        if (value instanceof String s) {
+            return Integer.parseInt(s);
+        }
+        return 0;
+        // return redissonClient.<Integer>getBucket(key).get();
     }
 }
