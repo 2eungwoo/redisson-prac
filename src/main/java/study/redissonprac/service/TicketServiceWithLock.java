@@ -30,7 +30,7 @@ public class TicketServiceWithLock implements TicketDecreaseUseCase{
 
             if (ticket <= EMPTY) {
                 log.info("[{}] 티켓 없음. 현재 남은 티켓 : {}", worker, ticket);
-                return;
+                throw new SoldOutException();
             }
 
             log.info("[{}] 진행중. 현재 남은 티켓 : {}", worker, ticket);
