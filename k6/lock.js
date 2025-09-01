@@ -2,8 +2,8 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export const options = {
-  vus: 50,        // 동시에 50명 요청
-  duration: '5s', // 5초 동안 부하
+  vus: 50,
+  duration: '3s',
 };
 
 export default function () {
